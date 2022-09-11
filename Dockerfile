@@ -4,6 +4,7 @@ RUN \
   apt-get update && apt-get install -y \
     curl \
     git \
+    imagemagick \
     jp2a \
     jq \
   && rm -rf /var/lib/apt/lists/* \

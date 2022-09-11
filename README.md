@@ -217,6 +217,38 @@ After running this query once, it will cache the results. If you run it again wi
 
 If you use `--cache` without specifying `[num]`, it'll default to 3600 seconds, i.e. 1 hour.
 
+### Running with Docker
+
+You can also run in a [Docker](https://www.docker.com) container. This will take care of all of the system requirements – bash, jq, jp2a, ImageMagik – but you'll still need a terminal with support for truecolor.
+
+To get started, build the container with
+
+```bash
+make aic-container
+```
+
+And then run with
+
+```bash
+make aic-sh
+```
+
+
+You can pass any set of options via the `AIC_OPTIONS` 
+variable. For example:
+
+```bash
+make aic-sh AIC_OPTIONS="--id 64818"
+make aic-sh AIC_OPTIONS='"la grande jatte"'
+make aic-sh AIC_OPTIONS='--limit 10 "mountains"'
+```
+
+Note the use of single (`'`) and double quotes (`"`). When you have a query string that needs to be quoted (e.g., `"la grande jatte"`) then you'll want to use single quotes for `AIC_OPTIONS`.
+
+Also note that this does not currently support running with `--json` because local files are not reachable from the container.
+
+If you want/need to run the container with your local clone of the `aic-bash` repo, then you can swap out the built-in installation of `aic-bash` by running `make aic-local` (instead of `make aic-sh`). 
+
 
 ## Contributing
 
